@@ -53,7 +53,7 @@ export const events = pgTable('events', {
   soldOut: boolean('sold_out'),
   imageUrl: text('image_url'),
   venueDetails: text('venue_details'), // Extra details, eg. "Sala Roberto Bolaño"
-  venueId: bigint('venue_id', { mode: 'number' }),
+  venueId: bigint('venue_id', { mode: 'number' }).notNull(),
 });
 
 export const eventOccurrences = pgTable('event_occurrences', {
