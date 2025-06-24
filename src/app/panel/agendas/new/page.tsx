@@ -1,17 +1,18 @@
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { venues, agendas } from '../../../../../drizzle/schema';
-import { db } from '../../../../index';
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { venues, agendas } from "../../../../../drizzle/schema";
+import { db } from "../../../../index";
 
 async function createAgenda(formData: FormData) {
-  'use server';
+  "use server";
 
-  const url = formData.get('url') as string;
-  const venueId = formData.get('venueId') as string;
-  const hasDetailUrls = formData.get('hasDetailUrls') === 'true';
+  const url = formData.get("url") as string;
+  const venueId = formData.get("venueId") as string;
+  const hasDetailUrls = formData.get("hasDetailUrls") === "true";
 
   if (!url) {
-    throw new Error('URL is required');
+    throw new Error("URL is required");
   }
 
   await db.insert(agendas).values({
@@ -20,7 +21,7 @@ async function createAgenda(formData: FormData) {
     hasDetailUrls,
   });
 
-  redirect('/panel');
+  redirect("/panel");
 }
 
 export default async function NewAgenda() {
@@ -76,7 +77,7 @@ export default async function NewAgenda() {
               </select>
               {venuesData.length === 0 && (
                 <p className="text-sm text-gray-500 mt-1">
-                  No venues available.{' '}
+                  No venues available.{" "}
                   <Link href="/panel/venues/new" className="text-blue-600 hover:text-blue-800">
                     Create one first
                   </Link>
