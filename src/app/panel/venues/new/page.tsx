@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { venues } from "../../../../../drizzle/schema";
-import { db } from "../../../../index";
+import { venues } from "@/drizzle/schema";
+import { db } from "@/index";
 
 async function createVenue(formData: FormData) {
   "use server";

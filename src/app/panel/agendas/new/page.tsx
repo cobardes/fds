@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { venues, agendas } from "../../../../../drizzle/schema";
-import { db } from "../../../../index";
+import { venues, agendas } from "@/drizzle/schema";
+import { db } from "@/index";
 
 async function createAgenda(formData: FormData) {
   "use server";

@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import Link from "next/link";
 
-import { venues, agendas } from "../../../drizzle/schema";
-import { db } from "../../index";
+import { venues, agendas } from "@/drizzle/schema";
+import { db } from "@/index";
 
 export default async function AdminPanel() {
   // Fetch venues and agendas with their relationships

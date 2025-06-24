@@ -2,8 +2,8 @@ import { eq } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 
-import { events, venues } from "../../drizzle/schema";
-import { db } from "../index";
+import { events, venues } from "@/drizzle/schema";
+import { db } from "@/index";
 
 export default async function Home() {
   const data = await db
