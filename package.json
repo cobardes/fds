@@ -14,8 +14,6 @@
     "format:fix": "npm run format && npm run lint:fix"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.50.0",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.2",
     "next": "15.3.3",
