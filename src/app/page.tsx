@@ -30,7 +30,12 @@ export default async function Home() {
         <Link href="/" className="text-2xl font-bold">
           fds.
         </Link>
-        <button className="text-xl">🔍</button>
+        <div className="flex items-center gap-4">
+          <Link href="/panel" className="text-sm text-gray-600 hover:text-gray-900">
+            Admin
+          </Link>
+          <button className="text-xl">🔍</button>
+        </div>
       </nav>
 
       <main className="p-4 space-y-8">
@@ -53,9 +58,7 @@ export default async function Home() {
               <div className="absolute bottom-0 left-0 right-0 p-4">
                 <h2 className="text-xl font-semibold text-white">{event.title}</h2>
                 <p className="text-sm text-white">{venue?.name || 'Unknown venue'}</p>
-                <p className="text-sm text-white">
-                  {new Date(event.schedule[0]).toLocaleDateString()}
-                </p>
+                <p className="text-sm text-white">Event Details</p>
               </div>
             </div>
           ))}
