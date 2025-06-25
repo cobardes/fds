@@ -8,6 +8,13 @@
       "when": 1750818145214,
       "tag": "0000_skinny_alex_power",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1750818396248,
+      "tag": "0001_add_url_to_events",
+      "breakpoints": true
     }
   ]
 }

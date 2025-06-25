@@ -45,6 +45,7 @@ export const agendas = pgTable('agendas', {
 export const events = pgTable('events', {
   id: bigint('id', { mode: 'number' }).generatedByDefaultAsIdentity().primaryKey(),
   eventType: eventTypeEnum('event_type').notNull(),
+  url: text('url').notNull(),
   title: text('title').notNull(),
   summary: text('summary').notNull(),
   description: text('description').notNull(),
