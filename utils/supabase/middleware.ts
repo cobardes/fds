@@ -47,6 +47,16 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  if (
+    user &&
+    request.nextUrl.pathname.startsWith('/login')
+  ) {
+    // user is logged in, redirect away from login page to panel
+    const url = request.nextUrl.clone()
+    url.pathname = '/panel'
+    return NextResponse.redirect(url)
+  }
+
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
   // 1. Pass the request in it, like so:
