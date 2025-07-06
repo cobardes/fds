@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { venues, agendas } from '../../../drizzle/schema';
 import { db } from '../../index';
 import { eq } from 'drizzle-orm';
+import { logout } from '../login/actions';
 
 export default async function AdminPanel() {
   // Fetch venues and agendas with their relationships
@@ -21,9 +22,19 @@ export default async function AdminPanel() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
-            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
-              ← Back to Site
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">
+                ← Back to Site
+              </Link>
+              <form action={logout}>
+                <button
+                  type="submit"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors cursor-pointer"
+                >
+                  Logout
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </header>
