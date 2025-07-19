@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import { venues, agendas } from '../../../drizzle/schema';
-import { db } from '../../index';
-import { eq } from 'drizzle-orm';
+import { eq } from "drizzle-orm";
+import Link from "next/link";
+
+import { venues, agendas } from "@/drizzle/schema";
+import { db } from "@/index";
 
 export default async function AdminPanel() {
   // Fetch venues and agendas with their relationships
@@ -112,7 +113,7 @@ export default async function AdminPanel() {
                         </a>
                         {venue && <p className="text-gray-600 text-sm mt-1">Venue: {venue.name}</p>}
                         <p className="text-gray-500 text-xs mt-1">
-                          Detail URLs: {agenda.hasDetailUrls ? 'Yes' : 'No'}
+                          Detail URLs: {agenda.hasDetailUrls ? "Yes" : "No"}
                         </p>
                       </div>
                     </div>

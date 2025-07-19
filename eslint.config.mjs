@@ -45,8 +45,7 @@ const eslintConfig = [
           "alphabetize": {
             "order": "asc",
             "caseInsensitive": true
-          },
-          "fixStyle": "newline-separated"
+          }
         }
       ],
       "@typescript-eslint/consistent-type-imports": [

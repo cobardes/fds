@@ -1,18 +1,19 @@
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { venues } from '../../../../../drizzle/schema';
-import { db } from '../../../../index';
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { venues } from "@/drizzle/schema";
+import { db } from "@/index";
 
 async function createVenue(formData: FormData) {
-  'use server';
+  "use server";
 
-  const name = formData.get('name') as string;
-  const streetAddress = formData.get('streetAddress') as string;
-  const url = formData.get('url') as string;
-  const logoUrl = formData.get('logoUrl') as string;
+  const name = formData.get("name") as string;
+  const streetAddress = formData.get("streetAddress") as string;
+  const url = formData.get("url") as string;
+  const logoUrl = formData.get("logoUrl") as string;
 
   if (!name || !streetAddress || !url) {
-    throw new Error('Name, street address, and URL are required');
+    throw new Error("Name, street address, and URL are required");
   }
 
   await db.insert(venues).values({
@@ -22,7 +23,7 @@ async function createVenue(formData: FormData) {
     logoUrl: logoUrl || null,
   });
 
-  redirect('/panel');
+  redirect("/panel");
 }
 
 export default function NewVenue() {
