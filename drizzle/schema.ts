@@ -1,69 +1,66 @@
-import {
-  pgTable,
-  bigint,
-  text,
-  boolean,
-  doublePrecision,
-  timestamp,
-  pgEnum,
-  AnyPgColumn,
-} from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { pgTable, bigint, text, foreignKey, boolean, doublePrecision, timestamp, pgEnum } from "drizzle-orm/pg-core"
 
-// Define the event_type enum
-export const eventTypeEnum = pgEnum('event_type', [
-  'theater',
-  'fair',
-  'festival',
-  'concert',
-  'exhibition',
-  'food_and_drinks',
-  'movie_screening',
-  'workshop',
-  'party',
-  'other',
+export const eventType = pgEnum("event_type", ['theater', 'fair', 'festival', 'concert', 'exhibition', 'food_and_drinks', 'movie_screening', 'workshop', 'party', 'other'])
+
+
+export const venues = pgTable("venues", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint({ mode: "number" }).primaryKey().generatedByDefaultAsIdentity({ name: "venues_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	name: text().notNull(),
+	streetAddress: text("street_address").notNull(),
+	url: text().notNull(),
+	logoUrl: text("logo_url"),
+});
+
+export const events = pgTable("events", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint({ mode: "number" }).primaryKey().generatedByDefaultAsIdentity({ name: "events_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	title: text().notNull(),
+	description: text().notNull(),
+	summary: text().notNull(),
+	freeAdmission: boolean("free_admission").notNull(),
+	fromPrice: doublePrecision("from_price"),
+	imageUrl: text("image_url"),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	venueId: bigint("venue_id", { mode: "number" }).notNull(),
+	eventType: eventType("event_type").notNull(),
+	registrationRequired: boolean("registration_required"),
+	soldOut: boolean("sold_out"),
+	venueDetails: text("venue_details"),
+	url: text().notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.venueId],
+			foreignColumns: [venues.id],
+			name: "events_venue_id_venues_id_fk"
+		}),
 ]);
 
-// Venues table
-export const venues = pgTable('venues', {
-  id: bigint('id', { mode: 'number' }).generatedByDefaultAsIdentity().primaryKey(),
-  name: text('name').notNull(),
-  streetAddress: text('street_address').notNull(),
-  url: text('url').notNull(),
-  logoUrl: text('logo_url'),
-});
+export const eventOccurrences = pgTable("event_occurrences", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint({ mode: "number" }).primaryKey().generatedByDefaultAsIdentity({ name: "event_occurrences_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	eventId: bigint("event_id", { mode: "number" }).notNull(),
+	occursAt: timestamp("occurs_at", { withTimezone: true, mode: 'string' }).notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.eventId],
+			foreignColumns: [events.id],
+			name: "event_occurrences_event_id_events_id_fk"
+		}),
+]);
 
-// Agendas table
-export const agendas = pgTable('agendas', {
-  id: bigint('id', { mode: 'number' }).generatedByDefaultAsIdentity().primaryKey(),
-  url: text('url').notNull(),
-  venueId: bigint('venue_id', { mode: 'number' }).references(() => venues.id),
-  hasDetailUrls: boolean('has_detail_urls').default(true),
-});
-
-// Events table
-export const events = pgTable('events', {
-  id: bigint('id', { mode: 'number' }).generatedByDefaultAsIdentity().primaryKey(),
-  eventType: eventTypeEnum('event_type').notNull(),
-  url: text('url').notNull(),
-  title: text('title').notNull(),
-  summary: text('summary').notNull(),
-  description: text('description').notNull(),
-  freeAdmission: boolean('free_admission').notNull(),
-  registrationRequired: boolean('registration_required'),
-  fromPrice: doublePrecision('from_price'),
-  soldOut: boolean('sold_out'),
-  imageUrl: text('image_url'),
-  venueDetails: text('venue_details'), // Extra details, eg. "Sala Roberto Bolaño"
-  venueId: bigint('venue_id', { mode: 'number' })
-    .notNull()
-    .references(() => venues.id),
-});
-
-export const eventOccurrences = pgTable('event_occurrences', {
-  id: bigint('id', { mode: 'number' }).generatedByDefaultAsIdentity().primaryKey(),
-  eventId: bigint('event_id', { mode: 'number' })
-    .notNull()
-    .references(() => events.id),
-  occursAt: timestamp('occurs_at', { withTimezone: true }).notNull(),
-});
+export const agendas = pgTable("agendas", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint({ mode: "number" }).primaryKey().generatedByDefaultAsIdentity({ name: "agendas_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	url: text().notNull(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	venueId: bigint("venue_id", { mode: "number" }),
+	hasDetailUrls: boolean("has_detail_urls").default(true),
+}, (table) => [
+	foreignKey({
+			columns: [table.venueId],
+			foreignColumns: [venues.id],
+			name: "agendas_venue_id_venues_id_fk"
+		}),
+]);
