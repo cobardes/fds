@@ -1,18 +1,23 @@
-import { eq } from "drizzle-orm";
+import { eq, gte, asc } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 
-import { events, venues } from "@/drizzle/schema";
+import { eventOccurrences, events, venues } from "@/drizzle/schema";
 import { db } from "@/index";
 
 export default async function Home() {
+  const nowIso = new Date().toISOString();
   const data = await db
     .select({
       event: events,
       venue: venues,
+      occursAt: eventOccurrences.occursAt,
     })
     .from(events)
-    .leftJoin(venues, eq(events.venueId, venues.id));
+    .leftJoin(venues, eq(events.venueId, venues.id))
+    .leftJoin(eventOccurrences, eq(events.id, eventOccurrences.eventId))
+    .where(gte(eventOccurrences.occursAt, nowIso))
+    .orderBy(asc(eventOccurrences.occursAt));
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("es-ES", {
