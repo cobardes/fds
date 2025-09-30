@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 import { venues, agendas } from "@/drizzle/schema";
 import { db } from "@/index";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 async function createAgenda(formData: FormData) {
   "use server";
 

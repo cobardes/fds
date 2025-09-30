@@ -5,6 +5,9 @@ import { venues, agendas } from "../../../drizzle/schema";
 import { db } from "../../index";
 import { logout } from "../login/actions";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminPanel() {
   // Fetch venues and agendas with their relationships
   const venuesData = await db.select().from(venues);

@@ -5,6 +5,9 @@ import Link from "next/link";
 import { eventOccurrences, events, venues } from "@/drizzle/schema";
 import { db } from "@/index";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const nowIso = new Date().toISOString();
   const data = await db
