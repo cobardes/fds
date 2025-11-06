@@ -12,7 +12,7 @@ export default async function Home() {
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("es-ES", {
-    weekday: "short",
+    weekday: "long",
     day: "numeric",
     month: "long",
   });
@@ -22,21 +22,21 @@ export default async function Home() {
   return (
     <div>
       {/* Navbar */}
-      <nav className="sticky top-0 p-4 flex justify-between items-center">
+      <nav className="fixed w-full top-0 p-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           fds.
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/panel" className="text-sm text-gray-600 hover:text-gray-900">
+          <Link href="/panel" className="text-sm text-white hover:text-gray-900">
             Admin
           </Link>
           <button className="text-xl">🔍</button>
         </div>
       </nav>
 
-      <main className="p-4 space-y-8 max-w-6xl mx-auto">
+      <main className="px-4 space-y-16 max-w-5xl mx-auto mt-20">
         {/* Date Browser */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center gap-8 font-medium text-2xl">
           <button>&lt;</button>
           <span>{formattedDate}</span>
           <button>&gt;</button>

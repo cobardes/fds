@@ -17,7 +17,7 @@ export const Event = ({ event, venue, occursAt }: EventData) => {
 
   return (
     <div className="group relative rounded-lg flex flex-col gap-2">
-      <h3 className="text-lg font-bold">{event.title}</h3>
+      <h3 className="text-lg font-semibold">{event.title}</h3>
       {event.imageUrl && (
         <Image
           unoptimized
