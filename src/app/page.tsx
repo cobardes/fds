@@ -51,7 +51,7 @@ export default async function Home() {
         </div>
 
         {/* Event List */}
-        <div className="space-y-4">
+        <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0">
           {remainingEvents.map((item: EventData) => (
             <Event key={item.event.id} {...item} />
           ))}
