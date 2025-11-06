@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Event } from "./components/Event";
-import { FeaturedEvent } from "./components/FeaturedEvent";
 import { getEventsQuery, type EventData } from "./components/types";
 
 export const dynamic = "force-dynamic";
@@ -18,8 +17,7 @@ export default async function Home() {
     month: "long",
   });
 
-  const featuredEvents = data.slice(0, 3);
-  const remainingEvents = data.slice(3).filter((item) => !!item.occursAt);
+  const events = data.filter((item) => !!item.occursAt);
 
   return (
     <div>
@@ -36,14 +34,7 @@ export default async function Home() {
         </div>
       </nav>
 
-      <main className="p-4 space-y-8">
-        {/* Featured Events Carousel */}
-        <div className="flex gap-4 overflow-x-auto">
-          {featuredEvents.map((item: EventData) => (
-            <FeaturedEvent key={item.event.id} {...item} />
-          ))}
-        </div>
-
+      <main className="p-4 space-y-8 max-w-6xl mx-auto">
         {/* Date Browser */}
         <div className="flex items-center justify-between">
           <button>&lt;</button>
@@ -52,9 +43,11 @@ export default async function Home() {
         </div>
 
         {/* Event List */}
-        <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0">
-          {remainingEvents.map((item: EventData) => (
-            <Event key={item.event.id + item.occursAt!} {...item} />
+        <div className="space-y-4 sm:columns-3 sm:gap-6 sm:space-y-6">
+          {events.map((item: EventData) => (
+            <div key={item.event.id + item.occursAt!} className="break-inside-avoid">
+              <Event {...item} />
+            </div>
           ))}
         </div>
       </main>
