@@ -9,6 +9,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   const data = await getEventsQuery();
+  console.log(data);
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("es-ES", {
@@ -18,7 +19,7 @@ export default async function Home() {
   });
 
   const featuredEvents = data.slice(0, 3);
-  const remainingEvents = data.slice(3);
+  const remainingEvents = data.slice(3).filter((item) => !!item.occursAt);
 
   return (
     <div>
@@ -53,7 +54,7 @@ export default async function Home() {
         {/* Event List */}
         <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0">
           {remainingEvents.map((item: EventData) => (
-            <Event key={item.event.id} {...item} />
+            <Event key={item.event.id + item.occursAt!} {...item} />
           ))}
         </div>
       </main>
