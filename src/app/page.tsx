@@ -1,3 +1,4 @@
+import { Search, ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { Event } from "./components/Event";
@@ -22,7 +23,7 @@ export default async function Home() {
   return (
     <div>
       {/* Navbar */}
-      <nav className="fixed w-full top-0 p-4 flex justify-between items-center">
+      <nav className="fixed w-full top-0 py-4 px-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           fds.
         </Link>
@@ -30,16 +31,22 @@ export default async function Home() {
           <Link href="/panel" className="text-sm text-white hover:text-gray-900">
             Admin
           </Link>
-          <button className="text-xl">🔍</button>
+          <button>
+            <Search size={24} strokeWidth={2.25} className="transform scale-x-[-1]" />
+          </button>
         </div>
       </nav>
 
       <main className="px-4 space-y-16 max-w-5xl mx-auto mt-20">
         {/* Date Browser */}
-        <div className="flex items-center justify-center gap-8 font-medium text-2xl">
-          <button>&lt;</button>
-          <span>{formattedDate}</span>
-          <button>&gt;</button>
+        <div className="flex items-center justify-between font-medium">
+          <button>
+            <ArrowLeft size={20} strokeWidth={2.25} />
+          </button>
+          <span className="text-2xl">{formattedDate}</span>
+          <button>
+            <ArrowRight size={20} strokeWidth={2.25} />
+          </button>
         </div>
 
         {/* Event List */}
