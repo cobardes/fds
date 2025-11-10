@@ -28,7 +28,7 @@ export default async function Home() {
           fds.
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/panel" className="text-sm text-white hover:text-gray-900">
+          <Link href="/panel" className="text-sm text-background hover:text-gray-900">
             Admin
           </Link>
           <button>
@@ -39,18 +39,18 @@ export default async function Home() {
 
       <main className="px-4 space-y-16 max-w-5xl mx-auto mt-20">
         {/* Date Browser */}
-        <div className="flex items-center justify-between font-medium">
+        <div className="flex items-center justify-between font-semibold">
           <button>
-            <ArrowLeft size={20} strokeWidth={2.25} />
+            <ArrowLeft size={22} strokeWidth={2.5} />
           </button>
           <span className="text-2xl">{formattedDate}</span>
           <button>
-            <ArrowRight size={20} strokeWidth={2.25} />
+            <ArrowRight size={22} strokeWidth={2.5} />
           </button>
         </div>
 
         {/* Event List */}
-        <div className="space-y-4 sm:columns-3 sm:gap-6 sm:space-y-6">
+        <div className="space-y-4 sm:columns-3 sm:gap-4 sm:space-y-6">
           {events.map((item: EventData) => (
             <div key={item.event.id + item.occursAt!} className="break-inside-avoid">
               <Event {...item} />

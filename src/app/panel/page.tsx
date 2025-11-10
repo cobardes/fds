@@ -22,7 +22,7 @@ export default async function AdminPanel() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-background shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
@@ -33,7 +33,7 @@ export default async function AdminPanel() {
               <form action={logout}>
                 <button
                   type="submit"
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors cursor-pointer"
+                  className="bg-red-600 hover:bg-red-700 text-background px-4 py-2 rounded-md font-medium transition-colors cursor-pointer"
                 >
                   Logout
                 </button>
@@ -46,12 +46,12 @@ export default async function AdminPanel() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Venues Section */}
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-background rounded-lg shadow p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Venues</h2>
               <Link
                 href="/panel/venues/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-background px-4 py-2 rounded-md font-medium"
               >
                 + Add Venue
               </Link>
@@ -95,12 +95,12 @@ export default async function AdminPanel() {
           </div>
 
           {/* Agendas Section */}
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-background rounded-lg shadow p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Agendas</h2>
               <Link
                 href="/panel/agendas/new"
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium"
+                className="bg-green-600 hover:bg-green-700 text-background px-4 py-2 rounded-md font-medium"
               >
                 + Add Agenda
               </Link>

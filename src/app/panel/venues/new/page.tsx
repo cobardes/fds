@@ -30,7 +30,7 @@ export default function NewVenue() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-background shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold text-gray-900">Create New Venue</h1>
@@ -42,7 +42,7 @@ export default function NewVenue() {
       </header>
 
       <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-background rounded-lg shadow p-6">
           <form action={createVenue} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -105,7 +105,7 @@ export default function NewVenue() {
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-background font-medium py-2 px-4 rounded-md transition-colors"
               >
                 Create Venue
               </button>

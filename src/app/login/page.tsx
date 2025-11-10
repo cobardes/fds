@@ -51,7 +51,7 @@ export default function LoginPage() {
       {error && <p className="text-red-500">{error}</p>}
       <button
         type="submit"
-        className="bg-neutral-800 text-white p-2 rounded-md cursor-pointer disabled:opacity-50"
+        className="bg-neutral-800 text-background p-2 rounded-md cursor-pointer disabled:opacity-50"
         disabled={loading}
       >
         Log in
