@@ -18,7 +18,7 @@ export default async function Home() {
     month: "long",
   });
 
-  const events = data.filter((item) => !!item.occursAt);
+  const events = data.filter((item) => item.occurrences?.length);
 
   return (
     <div>
@@ -52,7 +52,7 @@ export default async function Home() {
         {/* Event List */}
         <div className="space-y-4 sm:columns-3 sm:gap-4 sm:space-y-6">
           {events.map((item: EventData) => (
-            <div key={item.event.id + item.occursAt!} className="break-inside-avoid">
+            <div key={item.event.id} className="break-inside-avoid">
               <Event {...item} />
             </div>
           ))}

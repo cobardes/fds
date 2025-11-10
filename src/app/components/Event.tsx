@@ -5,13 +5,20 @@ import Image from "next/image";
 
 import type { EventData } from "./types";
 
-export const Event = ({ event, venue, occursAt }: EventData) => {
-  const formattedDate = occursAt
-    ? new Date(occursAt).toLocaleTimeString("es-ES", {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : "";
+export const Event = ({ event, venue, occurrences }: EventData) => {
+  const visibleOccurrences = occurrences?.slice(0, 3) ?? [];
+  const remainingOccurrences =
+    occurrences && occurrences.length > visibleOccurrences.length
+      ? occurrences.length - visibleOccurrences.length
+      : 0;
+
+  const formatTime = (value: string) =>
+    new Date(value).toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+  const formattedVisibleTimes = visibleOccurrences.map(formatTime).join(" y ");
 
   return (
     <div className="group relative rounded-lg flex hover:bg-foreground">
@@ -34,11 +41,18 @@ export const Event = ({ event, venue, occursAt }: EventData) => {
               {venue.name}
             </span>
           )}
-          {occursAt && (
-            <span className="flex items-center gap-1">
+          {visibleOccurrences.length > 0 && (
+            <div className="flex items-center gap-2">
               <Clock size={16} strokeWidth={2} />
-              {formattedDate}
-            </span>
+              <div className="flex items-center gap-2">
+                <span>{formattedVisibleTimes}</span>
+                {remainingOccurrences > 0 && (
+                  <span className="text-xs text-gray-500">{`+ ${remainingOccurrences} ${
+                    remainingOccurrences === 1 ? "horario más" : "horarios más"
+                  }`}</span>
+                )}
+              </div>
+            </div>
           )}
         </div>
       </div>
