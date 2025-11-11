@@ -37,7 +37,7 @@ export const getEventsQuery = (targetDate: Date) => {
       and(gte(eventOccurrences.occursAt, startOfDayIso), lt(eventOccurrences.occursAt, endOfDayIso))
     )
     .groupBy(events.id, venues.id)
-    .orderBy(asc(firstOccurrenceOrder))
+    .orderBy(asc(firstOccurrenceOrder));
 };
 
 export type EventData = Awaited<ReturnType<typeof getEventsQuery>>[number];
