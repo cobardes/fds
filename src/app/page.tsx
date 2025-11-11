@@ -1,4 +1,4 @@
-import { Search, ArrowLeft, ArrowRight } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 
 import { Event } from "./components/Event";
@@ -7,50 +7,17 @@ import { getEventsQuery, type EventData } from "./components/types";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-type HomeProps = {
-  searchParams?: {
-    date?: string;
-  };
-};
-
-const formatDateParam = (date: Date) => {
-  const copy = new Date(date);
-  copy.setHours(0, 0, 0, 0);
-  return copy.toISOString().split("T")[0];
-};
-
-const parseDateParam = (value?: string) => {
-  if (!value) {
-    return null;
-  }
-
-  const parsed = new Date(`${value}T00:00:00`);
-  return Number.isNaN(parsed.getTime()) ? null : parsed;
-};
-
-export default async function Home({ searchParams }: HomeProps) {
+export default async function Home() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const parsedDate = parseDateParam(searchParams?.date);
-  const targetDate = parsedDate ? new Date(parsedDate) : new Date(today);
-  targetDate.setHours(0, 0, 0, 0);
+  const data = await getEventsQuery(today);
 
-  const data = await getEventsQuery(targetDate);
-
-  const formattedDate = targetDate.toLocaleDateString("es-ES", {
+  const formattedDate = today.toLocaleDateString("es-ES", {
     weekday: "long",
     day: "numeric",
     month: "long",
   });
-
-  const nextDate = new Date(targetDate);
-  nextDate.setDate(nextDate.getDate() + 1);
-
-  const previousDate = new Date(targetDate);
-  previousDate.setDate(previousDate.getDate() - 1);
-
-  const showPrevious = targetDate.getTime() > today.getTime();
 
   const events = data.filter((item) => item.occurrences?.length);
 
@@ -72,27 +39,9 @@ export default async function Home({ searchParams }: HomeProps) {
       </nav>
 
       <main className="px-4 space-y-16 max-w-5xl mx-auto mt-20">
-        {/* Date Browser */}
-        <div className="flex items-center justify-between font-semibold">
-          {showPrevious ? (
-            <Link
-              href={`/?date=${formatDateParam(previousDate)}`}
-              aria-label="Día anterior"
-              className="p-1 rounded hover:text-gray-900"
-            >
-              <ArrowLeft size={22} strokeWidth={2.5} />
-            </Link>
-          ) : (
-            <span className="w-[22px]" aria-hidden />
-          )}
+        {/* Date */}
+        <div className="flex items-center justify-center font-semibold">
           <span className="text-2xl">{formattedDate}</span>
-          <Link
-            href={`/?date=${formatDateParam(nextDate)}`}
-            aria-label="Día siguiente"
-            className="p-1 rounded hover:text-gray-900"
-          >
-            <ArrowRight size={22} strokeWidth={2.5} />
-          </Link>
         </div>
 
         {/* Event List */}
