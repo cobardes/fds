@@ -4,9 +4,9 @@ import { eventOccurrences, events, venues } from "@/drizzle/schema";
 import { db } from "@/index";
 
 // Define query structure to infer types
-export const getEventsQuery = () => {
-  const now = new Date();
-  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+export const getEventsQuery = (targetDate: Date) => {
+  const startOfDay = new Date(targetDate);
+  startOfDay.setHours(0, 0, 0, 0);
   const endOfDay = new Date(startOfDay);
   endOfDay.setDate(endOfDay.getDate() + 1);
 
@@ -38,7 +38,6 @@ export const getEventsQuery = () => {
     )
     .groupBy(events.id, venues.id)
     .orderBy(asc(firstOccurrenceOrder))
-    .limit(35);
 };
 
 export type EventData = Awaited<ReturnType<typeof getEventsQuery>>[number];
