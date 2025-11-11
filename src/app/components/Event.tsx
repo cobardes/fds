@@ -44,7 +44,7 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
             {formattedEventType}
           </Chip>
         </div>
-        <div className="flex flex-col rounded-xl overflow-hidden bg-foreground/95 relative">
+        <div className="flex flex-col rounded-xl overflow-hidden group-hover:luminosity-0 transition-all duration-500 relative">
           {event.imageUrl && (
             <Image
               unoptimized
@@ -55,7 +55,7 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
               className="block w-full object-cover mix-blend-luminosity group-hover:opacity-0 transition-all duration-500"
             />
           )}
-          <div className="absolute p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
+          <div className="absolute p-4 opacity-0 group-hover:opacity-100 group-hover:bg-foreground/95 h-full transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
             <p className="line-clamp-3 text-background text-sm">{event.description}</p>
           </div>
         </div>
