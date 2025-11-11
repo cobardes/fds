@@ -2,7 +2,8 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always"
   },
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
@@ -23,4 +24,4 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
-} 
+}
