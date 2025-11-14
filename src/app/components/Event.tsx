@@ -2,6 +2,7 @@
 
 import { Clock, MapPin } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import type { EventData } from "./types";
 import type { ReactNode } from "react";
@@ -36,7 +37,7 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
   const formattedEventType = formatEventType(event.eventType);
 
   return (
-    <div className="group relative rounded-lg flex">
+    <Link href={event.url} target="_blank" className="group relative rounded-lg flex">
       <div className="flex flex-col gap-2">
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-lg font-semibold leading-none">{event.title}</h3>
@@ -81,6 +82,6 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
