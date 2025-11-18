@@ -4,7 +4,7 @@ import { Clock, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { EventData } from "./types";
+import type { EventData } from "./types.ts";
 import type { ReactNode } from "react";
 
 const chipBaseClasses =
@@ -57,7 +57,7 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
             />
           )}
           <div className="absolute p-4 opacity-0 group-hover:opacity-100 group-hover:bg-foreground/95 h-full transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
-            <p className="line-clamp-3 text-background text-sm">{event.description}</p>
+            <p className="line-clamp-5 text-background text-sm">{event.summary}</p>
           </div>
         </div>
         <div className="flex flex-col">
