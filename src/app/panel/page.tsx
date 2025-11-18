@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import Link from "next/link";
 
-import { venues, agendas } from "../../../drizzle/schema";
+import { agendas, venues } from "../../../drizzle/schema";
 import { db } from "../../index";
 import { logout } from "../login/actions";
 
@@ -20,9 +20,9 @@ export default async function AdminPanel() {
     .leftJoin(venues, eq(agendas.venueId, venues.id));
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-background shadow">
+      <header>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
@@ -46,7 +46,7 @@ export default async function AdminPanel() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Venues Section */}
-          <div className="bg-background rounded-lg shadow p-6">
+          <div className="border-stone-400/30 border-1 rounded-lg p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Venues</h2>
               <Link
@@ -59,13 +59,10 @@ export default async function AdminPanel() {
 
             <div className="space-y-4">
               {venuesData.length === 0 ? (
-                <p className="text-gray-500 italic">No venues found</p>
+                <p className="text-gray-200 italic">No venues found</p>
               ) : (
                 venuesData.map((venue) => (
-                  <div
-                    key={venue.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50"
-                  >
+                  <div key={venue.id} className="rounded-lg p-4 hover:bg-stone-800/20">
                     <h3 className="font-semibold text-lg text-gray-900">{venue.name}</h3>
                     <p className="text-gray-600 text-sm mt-1">{venue.streetAddress}</p>
                     <div className="mt-2 flex gap-4 text-sm">
@@ -95,7 +92,7 @@ export default async function AdminPanel() {
           </div>
 
           {/* Agendas Section */}
-          <div className="bg-background rounded-lg shadow p-6">
+          <div className="border-stone-400/30 border-1 rounded-lg p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Agendas</h2>
               <Link
@@ -111,10 +108,7 @@ export default async function AdminPanel() {
                 <p className="text-gray-500 italic">No agendas found</p>
               ) : (
                 agendasData.map(({ agenda, venue }) => (
-                  <div
-                    key={agenda.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50"
-                  >
+                  <div key={agenda.id} className="rounded-lg p-4 hover:bg-stone-800/20">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <a
