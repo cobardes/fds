@@ -8,7 +8,7 @@ export const getEventsQuery = (targetDate: Date) => {
   const startOfDay = new Date(targetDate);
   startOfDay.setHours(0, 0, 0, 0);
   const endOfDay = new Date(startOfDay);
-  endOfDay.setDate(endOfDay.getDate() + 1);
+  endOfDay.setDate(endOfDay.getDate() + 2);
 
   const startOfDayIso = startOfDay.toISOString();
   const endOfDayIso = endOfDay.toISOString();
