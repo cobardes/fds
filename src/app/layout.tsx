@@ -1,10 +1,10 @@
-import { Geist_Mono, Instrument_Sans } from "next/font/google";
+import { Geist_Mono, Rethink_Sans } from "next/font/google";
 
 import type { Metadata } from "next";
 import "./globals.css";
 
-const instrumentSans = Instrument_Sans({
-  variable: "--font-instrument-sans",
+const rethinkSans = Rethink_Sans({
+  variable: "--font-rethink-sans",
   subsets: ["latin"],
 });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${instrumentSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${rethinkSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
