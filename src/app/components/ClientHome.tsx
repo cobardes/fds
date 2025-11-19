@@ -44,6 +44,8 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
     month: "long",
   });
 
+  const visibleEvents = events.filter((item) => !item.event.isOngoing);
+
   return (
     <div>
       {/* New Navigation Header */}
@@ -80,8 +82,8 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
 
         {/* Event List */}
         <div className="space-y-4 sm:columns-3 sm:gap-4 sm:space-y-6 transition-all duration-200">
-          {events.length > 0 ? (
-            events.map((item: EventData) => (
+          {visibleEvents.length > 0 ? (
+            visibleEvents.map((item: EventData) => (
               <div key={item.event.id} className="break-inside-avoid">
                 <Event {...item} />
               </div>
