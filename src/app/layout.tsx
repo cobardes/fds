@@ -1,4 +1,4 @@
-import { Geist_Mono, Instrument_Sans } from "next/font/google";
+import { Geist_Mono, Instrument_Sans, Murecho } from "next/font/google";
 
 import type { Metadata } from "next";
 import "./globals.css";
@@ -10,6 +10,11 @@ const instrumentSans = Instrument_Sans({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const murecho = Murecho({
+  variable: "--font-murecho",
   subsets: ["latin"],
 });
 
@@ -25,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${instrumentSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${instrumentSans.variable} ${geistMono.variable} ${murecho.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-instrument-sans);
   --font-mono: var(--font-geist-mono);
+  --font-murecho: var(--font-murecho);
 }
 
 body {

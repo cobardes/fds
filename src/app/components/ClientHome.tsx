@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useTransition } from "react";
 
 import { fetchEvents } from "../actions";
@@ -48,31 +47,27 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
     <div>
       {/* New Navigation Header */}
       <nav className="sm:sticky w-full top-0 z-10 bg-background py-4 px-6 flex flex-col sm:flex-row sm:justify-between items-center gap-4">
-        <Link href="/" className="text-2xl font-bold left-6 sm:static">
-          fds.
-        </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 text-5xl font-medium">
           <button
             onClick={() => handleDateChange("prev")}
-            className="transition-colors disabled:opacity-50 cursor-pointer"
+            className="transition-colors disabled:opacity-50 cursor-pointer font-murecho"
             disabled={isPending}
             aria-label="Previous day"
           >
             ←
           </button>
 
-          <span className="text-4xl font-medium min-w-[200px] text-center">{formattedDate}</span>
+          <span className="min-w-[200px] text-center">{formattedDate}</span>
 
           <button
             onClick={() => handleDateChange("next")}
-            className="transition-colors disabled:opacity-50 cursor-pointer"
+            className="transition-colors disabled:opacity-50 cursor-pointer font-murecho"
             disabled={isPending}
             aria-label="Next day"
           >
             →
           </button>
         </div>
-        <div className="w-[45px] hidden sm:block" /> {/* Spacer for centering */}
       </nav>
 
       <main className="px-4 max-w-5xl mx-auto mt-24 mb-16">
