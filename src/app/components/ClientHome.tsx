@@ -54,8 +54,8 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
           <div className="flex items-center gap-4 text-5xl font-medium">
             <button
               onClick={() => handleDateChange("prev")}
-              className="transition-all cursor-pointer font-murecho"
-              disabled={isPending}
+              className="transition-all not-disabled:cursor-pointer font-murecho"
+              disabled={isPending || isAtStart}
               aria-label="Previous day"
             >
               {isAtStart ? "☀" : "←"}
@@ -64,7 +64,7 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
 
             <button
               onClick={() => handleDateChange("next")}
-              className="transition-all cursor-pointer font-murecho"
+              className="transition-all not-disabled:cursor-pointer font-murecho"
               disabled={isPending}
               aria-label="Next day"
             >
