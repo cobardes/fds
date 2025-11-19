@@ -1,18 +1,17 @@
 import { relations } from "drizzle-orm/relations";
 
-import { venues, events, eventOccurrences, agendas } from "./schema";
+import { venues, agendas, events, eventOccurrences } from "./schema";
 
-export const eventsRelations = relations(events, ({one, many}) => ({
+export const agendasRelations = relations(agendas, ({one}) => ({
 	venue: one(venues, {
-		fields: [events.venueId],
+		fields: [agendas.venueId],
 		references: [venues.id]
 	}),
-	eventOccurrences: many(eventOccurrences),
 }));
 
 export const venuesRelations = relations(venues, ({many}) => ({
-	events: many(events),
 	agendas: many(agendas),
+	events: many(events),
 }));
 
 export const eventOccurrencesRelations = relations(eventOccurrences, ({one}) => ({
@@ -22,9 +21,10 @@ export const eventOccurrencesRelations = relations(eventOccurrences, ({one}) => 
 	}),
 }));
 
-export const agendasRelations = relations(agendas, ({one}) => ({
+export const eventsRelations = relations(events, ({one, many}) => ({
+	eventOccurrences: many(eventOccurrences),
 	venue: one(venues, {
-		fields: [agendas.venueId],
+		fields: [events.venueId],
 		references: [venues.id]
 	}),
 }));

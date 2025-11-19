@@ -34,7 +34,11 @@ export const getEventsQuery = (targetDate: Date) => {
     .leftJoin(venues, eq(events.venueId, venues.id))
     .leftJoin(eventOccurrences, eq(events.id, eventOccurrences.eventId))
     .where(
-      and(gte(eventOccurrences.occursAt, startOfDayIso), lt(eventOccurrences.occursAt, endOfDayIso))
+      and(
+        gte(eventOccurrences.occursAt, startOfDayIso),
+        lt(eventOccurrences.occursAt, endOfDayIso),
+        eq(events.isVisible, true)
+      )
     )
     .groupBy(events.id, venues.id)
     .orderBy(asc(firstOccurrenceOrder));
