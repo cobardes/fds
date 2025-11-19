@@ -81,7 +81,7 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
         )}
 
         {/* Event List */}
-        <div className="space-y-4 sm:columns-3 sm:gap-4 sm:space-y-6 transition-all duration-200">
+        <div className="space-y-4 sm:columns-3 sm:gap-6 sm:space-y-6 transition-all duration-200">
           {visibleEvents.length > 0 ? (
             visibleEvents.map((item: EventData) => (
               <div key={item.event.id} className="break-inside-avoid">

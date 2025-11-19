@@ -38,14 +38,17 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
 
   return (
     <Link href={event.url} target="_blank" className="group relative rounded-lg flex">
-      <div className="flex flex-col gap-2">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-lg font-semibold leading-none">{event.title}</h3>
-          <Chip className="font-medium text-foreground border-foreground/80">
-            {formattedEventType}
-          </Chip>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="text-lg font-semibold leading-tight">{event.title}</h3>
+            <Chip className="font-medium text-foreground border-foreground/80">
+              {formattedEventType}
+            </Chip>
+          </div>
+          <p className="text-sm line-clamp-3">{event.summary}</p>
         </div>
-        <div className="flex flex-col rounded-xl overflow-hidden group-hover:luminosity-0 bg-green-500/30 opacity-90 mix-blend-multiply transition-all duration-500 relative">
+        <div className="flex flex-col rounded-xl overflow-hidden bg-green-500/30 opacity-90 mix-blend-multiply relative">
           {event.imageUrl && (
             <Image
               unoptimized
@@ -53,12 +56,9 @@ export const Event = ({ event, venue, occurrences }: EventData) => {
               alt={event.title}
               height={100}
               width={100}
-              className="opacity-100 saturate-0 block w-full object-cover mix-blend-luminosity group-hover:opacity-0 transition-all duration-500"
+              className="opacity-100 saturate-0 block w-full object-cover mix-blend-luminosity"
             />
           )}
-          <div className="absolute p-4 opacity-0 group-hover:opacity-100 group-hover:bg-foreground/95 h-full transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
-            <p className="line-clamp-5 text-background text-sm">{event.summary}</p>
-          </div>
         </div>
         <div className="flex flex-col">
           {venue && (
