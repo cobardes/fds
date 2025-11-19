@@ -49,7 +49,7 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
   return (
     <div>
       {/* New Navigation Header */}
-      <nav className="sm:sticky w-full top-0 z-10 bg-background py-4">
+      <nav className="sm:sticky w-full z-10 bg-background pb-4 pt-8">
         <div className="px-4 max-w-5xl mx-auto flex flex-col sm:flex-row sm:justify-between items-center gap-4">
           <div className="flex items-center gap-4 text-5xl font-medium">
             <button
@@ -74,7 +74,7 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
         </div>
       </nav>
 
-      <main className="px-4 max-w-5xl mx-auto mt-24 mb-16">
+      <main className="px-4 max-w-5xl mx-auto mt-20 mb-16">
         {/* Loading State Overlay */}
         {isPending && (
           <div className="fixed inset-0 bg-background/50 z-20 pointer-events-none transition-all duration-200" />
