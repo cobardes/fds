@@ -6,9 +6,9 @@ import { db } from "@/index";
 // Define query structure to infer types
 export const getEventsQuery = (targetDate: Date) => {
   const startOfDay = new Date(targetDate);
-  startOfDay.setHours(0, 0, 0, 0);
+  startOfDay.setUTCHours(0, 0, 0, 0);
   const endOfDay = new Date(startOfDay);
-  endOfDay.setDate(endOfDay.getDate() + 2);
+  endOfDay.setUTCDate(endOfDay.getUTCDate() + 2);
 
   const startOfDayIso = startOfDay.toISOString();
   const endOfDayIso = endOfDay.toISOString();

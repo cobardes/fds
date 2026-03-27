@@ -20,13 +20,12 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
   const handleDateChange = (direction: "prev" | "next") => {
     const newDate = new Date(date);
     if (direction === "prev") {
-      newDate.setDate(date.getDate() - 1);
+      newDate.setUTCDate(date.getUTCDate() - 1);
     } else {
-      newDate.setDate(date.getDate() + 1);
+      newDate.setUTCDate(date.getUTCDate() + 1);
     }
 
-    // Keep the time at 00:00:00 for consistency
-    newDate.setHours(0, 0, 0, 0);
+    newDate.setUTCHours(0, 0, 0, 0);
 
     setDate(newDate);
 
@@ -38,10 +37,11 @@ export function ClientHome({ initialEvents, initialDate }: ClientHomeProps) {
     });
   };
 
-  const formattedDate = date.toLocaleDateString("es-ES", {
+  const formattedDate = date.toLocaleDateString("es-CL", {
     weekday: "long",
     day: "numeric",
     month: "long",
+    timeZone: "America/Santiago",
   });
 
   const visibleEvents = events.filter((item) => !item.event.isOngoing);
